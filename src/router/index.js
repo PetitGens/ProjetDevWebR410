@@ -32,9 +32,15 @@ router.beforeEach(async (to, from, next) => {
     const {data} = await supabase.auth.getSession();
     const isLoggedIn = !!data.session;
 
-    if(to.matched.some(record => record.meta.requiresAuth) && !isLoggedIn) {
+    const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+
+    if(requiresAuth && !isLoggedIn) {
         next({name: 'login'});
         return;
+    }
+
+    if(!requiresAuth && isLoggedIn) {
+      next({name: 'chat'});
     }
 
     next();

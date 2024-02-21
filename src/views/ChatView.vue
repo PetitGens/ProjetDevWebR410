@@ -2,7 +2,7 @@
 import {ref} from 'vue'
 import ChatMessage from '@/components/ChatMessage.vue';
 
-const messageText = ref('je suis un message');
+const messageText = ref('');
 const messageList = ref([]);
 
 const textarea = ref(null);
