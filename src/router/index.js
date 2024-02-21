@@ -41,6 +41,7 @@ router.beforeEach(async (to, from, next) => {
 
     if(!requiresAuth && isLoggedIn) {
       next({name: 'chat'});
+      return;
     }
 
     next();
