@@ -29,7 +29,7 @@ function formatDate(date){
 };
 
 const formattedDate = computed(() => {
-    const date = props.message.date;
+    const date = new Date(props.message.created_at);
     return formatDate(date);
 });
 
@@ -37,8 +37,8 @@ const formattedDate = computed(() => {
 
 <template>
     <div class="flex">
-        <img class="bg-slate-600 h-10 w-10 mr-1 rounded-full" :src="message.user.avatarUrl">
-        {{ message.user.username }}
+        <img class="bg-slate-600 h-10 w-10 mr-1 rounded-full" :src="message.author.avatar_url" :alt="message.author.username">
+        {{ message.author.username }}
         <span class="text-xs text-opacity-40 text-gray-50 ml-1">
             
             {{ formattedDate }}
@@ -55,6 +55,6 @@ const formattedDate = computed(() => {
     </div>
 
     <div>
-        {{ message.text }}
+        {{ message.content }}
     </div>
 </template>

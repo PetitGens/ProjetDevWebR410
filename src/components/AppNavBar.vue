@@ -6,15 +6,14 @@ import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const { user } = storeToRefs(useUserStore());
-
-const router = useRouter();
+const { push: routerPush } = useRouter(); 
 
 const loading = ref(false);
 
 async function logout() {
     loading.value = true;
     await supabase.auth.signOut();
-    router.push({ name: 'login' }); 
+    routerPush({ name: 'login' }); 
 }
 </script>
 
