@@ -9,7 +9,10 @@ import { insertMessage, fetchMessage, subsribeToMessage, messageList, deleteMess
 
 const messageText = ref('');
 
-onMounted(async () => await fetchMessage());
+onMounted(async () => {
+    await fetchMessage();
+    scrollToBottom();
+});
 
 subsribeToMessage();
 
@@ -32,12 +35,18 @@ async function addMessage(){
     textarea.value.focus()
 }
 
+const messagesContainer = ref(null);
+
+function scrollToBottom(){
+    messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight;
+}
+
 </script>
 
 <template>
     <div class="flex flex-col h-full overflow-hidden">
         <app-nav-bar/>
-        <div class="overflow-auto grow">
+        <div class="overflow-auto grow" ref="messagesContainer">
             <div v-for="(message, index) in messageList" class="p-4" :key="index">
                 <chat-message @delete="deleteMessageFromDB" :message="message"></chat-message>
             </div>
