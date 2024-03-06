@@ -37,20 +37,24 @@ function deleteMessage(id){
 </script>
 
 <template>
-    <app-nav-bar/>
-    <div v-for="(message, index) in messageList" class="p-4" :key="index">
-        <chat-message @delete="deleteMessage" :message="message"></chat-message>
-    </div>
-    <div class="flex align-center p-2">
-        <textarea
-            ref="textarea"
-            @keyup.enter.exact="addMessage"
-            v-model="messageText" 
-            name="message" 
-            id="message" 
-            rows="1" 
-            class="text-black rounded-md"
-        ></textarea>
-        <button @click="addMessage" class="p-2 bg-blue-600 rounded-md ml-3">Envoyer</button>
+    <div class="flex flex-col h-full overflow-hidden">
+        <app-nav-bar/>
+        <div class="overflow-auto grow">
+            <div v-for="(message, index) in messageList" class="p-4" :key="index">
+                <chat-message @delete="deleteMessage" :message="message"></chat-message>
+            </div>
+        </div>
+        <div class="flex align-center p-4 border-t border-t-slate-700">
+            <textarea
+                ref="textarea"
+                @keyup.enter.exact="addMessage"
+                v-model="messageText" 
+                name="message" 
+                id="message" 
+                rows="1" 
+                class="text-black rounded-md"
+            ></textarea>
+            <button @click="addMessage" class="p-2 bg-blue-600 rounded-md ml-3">Envoyer</button>
+        </div>
     </div>
 </template>
