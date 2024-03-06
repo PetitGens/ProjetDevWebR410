@@ -5,7 +5,7 @@ import AppNavBar from '@/components/AppNavBar.vue';
 import { ref, onMounted } from "vue";
 import { useUserStore } from '@/stores/user';
 import { storeToRefs } from 'pinia';
-import { insertMessage, fetchMessage, subsribeToMessage, messageList } from '@/api/messages';
+import { insertMessage, fetchMessage, subsribeToMessage, messageList, deleteMessageFromDB } from '@/api/messages';
 
 const messageText = ref('');
 
@@ -32,8 +32,8 @@ async function addMessage(){
     textarea.value.focus()
 }
 
-function deleteMessage(id){
-    messageList.value = messageList.value.filter(message => message.id !== id);
+async function deleteMessage(id){
+    await deleteMessageFromDB(id);
 }
 
 </script>
