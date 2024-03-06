@@ -57,6 +57,7 @@ const avatarUrl = computed(() => {
             <!-- Hier...-->
         </span>        
 
+        <!-- Only display the button if the message is from the user -->
         <button v-if="user && user.id===message.author.id" @click="emit('delete', message.id)" class="bg-red-500 rounded-md p-2 ml-2 hover:bg-red-600">
             <TrashIcon class="w-4 h-4" />
         </button>
