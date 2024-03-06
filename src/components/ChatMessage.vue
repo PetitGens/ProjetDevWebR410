@@ -52,9 +52,6 @@ const avatarUrl = computed(() => {
         <span class="text-xs text-opacity-40 text-gray-50 ml-1">
             
             {{ formattedDate }}
-            <!--TODO-->
-            <!-- Aujourd'hui si c'est aujourd'hui -->
-            <!-- Hier...-->
         </span>        
 
         <!-- Only display the button if the message is from the user -->

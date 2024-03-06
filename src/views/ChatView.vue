@@ -32,10 +32,6 @@ async function addMessage(){
     textarea.value.focus()
 }
 
-async function deleteMessage(id){
-    await deleteMessageFromDB(id);
-}
-
 </script>
 
 <template>
@@ -43,7 +39,7 @@ async function deleteMessage(id){
         <app-nav-bar/>
         <div class="overflow-auto grow">
             <div v-for="(message, index) in messageList" class="p-4" :key="index">
-                <chat-message @delete="deleteMessage" :message="message"></chat-message>
+                <chat-message @delete="deleteMessageFromDB" :message="message"></chat-message>
             </div>
         </div>
         <div class="flex align-center p-4 border-t border-t-slate-700">
